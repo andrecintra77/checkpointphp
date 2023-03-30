@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de salário líquido</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-DmY9S6PfLQXTkrJ+0RBwAy4U8Hvze4KTFQaGiCcP2Dm5/z32I/+8voUc4sfvGjB4" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de salário líquido</h1>
+        <form method="post" action="">
+            <div class="form-group">
+                <label for="salario_bruto">Salário Bruto:</label>
+                <input type="number" class="form-control" id="salario_bruto" name="salario_bruto" required>
+            </div>
+
+            <div class="form-group">
+                <label for="num_dependentes">Número de dependentes:</label>
+                <input type="number" class="form-control" id="num_dependentes" name="num_dependentes" required>
+            </div>
+
+            <div class="form-group">
+                <label for="outros_descontos">Outros descontos:</label>
+                <input type="number" class="form-control" id="outros_descontos" name="outros_descontos">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+        
+        <?php
+            if(isset($_POST['salario_bruto']) && isset($_POST['num_dependentes'])) {
+                $salario_bruto = $_POST['salario_bruto'];
+                $num_dependentes = $_POST['num_dependentes'];
+                $outros_descontos = isset($_POST['outros_descontos']) ? $_POST['outros_descontos'] : 0;
+
+                // Cálculo do INSS
+                if($salario_bruto <= 1100){
+                    $inss = $salario_bruto * 0.075;
+                }
+                elseif($salario_bruto <= 2203.48){
+                    $inss = $salario_bruto * 0.09;
+                }
+                elseif($salario_bruto <= 3305.22){
+                    $inss = $salario_bruto * 0.12;
+                }
+                elseif($salario_bruto <= 6433.57){
+                    $inss = $salario_bruto * 0.14;
+                }
+                else{
+                    $inss = 751.99;
+                }
+
+                // Cálculo do IRRF
+                $base_calculo = $salario_bruto - $inss - ($num_dependentes * 189.59) - $outros_descontos;
+
+                if($base_calculo <= 1903.98){
+                    $irrf = 0;
+                }
+                elseif($base_calculo <= 2826.65){
+                    $irrf = ($base_calculo * 0.075) - 142.80;
+                }
+                elseif($base_calculo <= 3751.05){
+                    $irrf = ($base_calculo * 0.15) - 354.80;
+                }
+                elseif($base_calculo <= 4664.68){
+                    $irrf = ($base_calculo * 0.225) - 636.13;
+                }
+                else{
+                    $<div class="form-group"> <label for="num_dependentes" class="col-sm-3 control-label">Número de dependentes:</label> <div class="col-sm-9"> <input type="number" id="num_dependentes" name="num_dependentes" class="form-control" required> </div> </div>
+php
+            <div class="form-group">
+                <label for="outros_descontos" class="col-sm-3 control-label">Outros descontos:</label>
+                <div class="col-sm-9">
+                    <input type="number" id="outros_descontos" name="outros_descontos" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Calcular</button>
+                </div>
+            </div>
+        </form>
+        
+        <?php
+            if(isset($_POST['salario_bruto']) && isset($_POST['num_dependentes'])) {
+                $salario_bruto = $_POST['salario_bruto'];
+                $num_dependentes = $_POST['num_dependentes'];
+                $outros_descontos = isset($_POST['outros_descontos']) ? $_POST['outros_descontos'] : 0;
+
+                // Cálculo do INSS
+                if($salario_bruto <= 1100){
+                    $inss = $salario_bruto * 0.075;
+                }
+                elseif($salario_bruto <= 2203.48){
+                    $inss = $salario_bruto * 0.09;
+                }
+                elseif($salario_bruto <= 3305.22){
+                    $inss = $salario_bruto * 0.12;
+                }
+                elseif($salario_bruto <= 6433.57){
+                    $inss = $salario_bruto * 0.14;
+                }
+                else{
+                    $inss = 751.99;
+                }
+
+                // Cálculo do IRRF
+                $base_calculo = $salario_bruto - $inss - ($num_dependentes * 189.59) - $outros_descontos;
+
+                if($base_calculo <= 1903.98){
+                    $irrf = 0;
+                }
+                elseif($base_calculo <= 2826.65){
+                    $irrf = ($base_calculo * 0.075) - 142.80;
+                }
+                elseif($base_calculo <= 3751.05){
+                    $irrf = ($base_calculo * 0.15) - 354.80;
+                }
+                elseif($base_calculo <= 4664.68){
+                    $irrf = ($base_calculo * 0.225) - 636.13;
+                }
+                else{
+                    $irrf = ($base_calculo * 0.275) - 869.36;
+                }
+
+                $salario_liquido = $salario_bruto - $inss - $irrf;
+
+                echo "<div class='container'>" . PHP_EOL;
+                echo "<h2>Resultados</h2>" . PHP_EOL;
+                echo "<p><strong>Salário bruto:</strong> R$ " . number_format($salario_bruto, 2, ',', '.') . "</p>" . PHP_EOL;
+                echo "<p><strong>INSS:</strong> R$ " . number_format($inss, 2, ',', '.')
+$irrf = ($base_calculo * 0.275) - 869.36; } $salario_liquido = $salario_bruto - $inss - $irrf;
+            echo "<div class='container'>" . PHP_EOL;
+            echo "<h2>Resultados</h2>" . PHP_EOL;
+            echo "<p><strong>Salário bruto:</strong> R$ " . number_format($salario_bruto, 2, ',', '.') . "</p>" . PHP_EOL;
+            echo "<p><strong>INSS:</strong> R$ " . number_format($inss, 2, ',', '.') . "</p>" . PHP_EOL;
+            echo "<p><strong>IRRF:</strong> R$ " . number_format($irrf, 2, ',', '.') . "</p>" . PHP_EOL;
+            echo "<p><strong>Salário líquido:</strong> R$ " . number_format($salario_liquido, 2, ',', '.') . "</p>" . PHP_EOL;
+            echo "</div>" . PHP_EOL;
+        }
+    ?>
+</div>
+</body>
+</html>
